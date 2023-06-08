@@ -1,0 +1,6 @@
+initial startup
+
+fixed readme
+
+added index.html
+
