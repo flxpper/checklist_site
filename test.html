@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Voting Page</title>
+</head>
+<body>
+   <h1>Click to count</h1>
+   <button id="voteButton">Vote</button>
+   <p id="voteCount">Total Votes: 0</p>
+
+   <script>
+      const voteButton = document.getElementById('voteButton');
+      const voteCount = document.getElementById('voteCount');
+
+      voteButton.addEventListener('click', () => {
+         // Make a POST request to the serverless function endpoint
+         fetch('/.netlify/functions/vote')
+            .then(response => response.json())
+            .then(data => {
+               // Update the vote count on the page
+               voteCount.textContent = `Total Votes: ${data.count}`;
+            })
+            .catch(error => {
+               console.error('Error:', error);
+            });
+      });
+   </script>
+</body>
+</html>
